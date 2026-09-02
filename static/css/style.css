@@ -7,22 +7,27 @@
 :root {
     --ink: #1c1917;
     --paper: #faf6f0;
+    --white: #ffffff;
     --accent: #d95d39;
     --accent-dark: #a8442a;
     --line: #e3d9c9;
     --text-muted: #6b6459;
     --radius: 4px;
+    --back: #161124;
+    --abu: #b3b3b3;
+    --indigo: #4a2076;
 }
 
 body {
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: var(--ink);
-    background-color: var(--paper);
+    background-color: var(--back);
     line-height: 1.6;
 }
 
 h1, .brand {
     font-family: "Space Grotesk", -apple-system, sans-serif;
+    color: var(--white);
 }
 
 .container {
@@ -96,7 +101,7 @@ h1, .brand {
 }
 
 .bio {
-    color: var(--text-muted);
+    color: var(--abu);
     max-width: 480px;
     margin-bottom: 1.5rem;
 }
@@ -153,7 +158,7 @@ h1, .brand {
     left: 1.25rem;
     width: 100%;
     height: 100%;
-    background-color: var(--accent);
+    background-color: var(--indigo);
     border-radius: var(--radius);
     z-index: 0;
 }
