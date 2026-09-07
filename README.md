@@ -39,6 +39,13 @@ Ringkasan log prompting :
 
 - Responsivitas CSS Grid: Meminta bantuan menyusun kode CSS untuk kerangka HTML experience yang sudah dibuat, dilanjutkan dengan diskusi pendalaman secara kritis mengenai alasan dan fungsi penggunaan grid-template-columns: repeat(auto-fit, minmax()) dibandingkan dengan media query manual.
 
-Keterbatasan AI: Awalnya AI membuat kode CSS yang menggunakan nilai warna hardcoded yang kemudian saya ganti dengan memasukkan warna tersebut ke dalam root dan diubah menajdi variabel
+- Smooth scrolling
+
+- Pembuatan navbar dan teks span rata kanan
+
+Keterbatasan AI: 
+- Awalnya AI membuat kode CSS yang menggunakan nilai warna hardcoded yang kemudian saya ganti dengan memasukkan warna tersebut ke dalam root dan diubah menajdi variabel
+
+- AI menyuruh untuk membuat gridtemplate yang auto fit, namun setelah saya pertimbangkan hal ini ternyata membuat reader sulit untuk membaca karena ukuran cardnya terlalu kecil. Akhirnya saya ubah ukuran cardnya menjadi full width
 
 Berikut adalah link chat AI nya : https://share.gemini.google/ZDLm3tnEJD9C
