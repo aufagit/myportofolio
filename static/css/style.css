@@ -8,14 +8,15 @@
     --ink: #1c1917;
     --paper: #faf6f0;
     --white: #ffffff;
-    --accent: #d95d39;
-    --accent-dark: #a8442a;
+    --accent: #00f0ff;
+    --accent-dark: #00b4d8;
     --line: #e3d9c9;
     --text-muted: #6b6459;
     --radius: 4px;
     --back: #161124;
     --abu: #b3b3b3;
     --indigo: #4a2076;
+    --bgtransparent: #00000000;
 }
 
 body {
@@ -116,12 +117,13 @@ h1, .brand {
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--text-muted);
+    color: var(--white);
     margin-bottom: 0.15rem;
 }
 
 .meta-row dd {
     font-weight: 600;
+    color: var(--abu);
 }
 
 .social-links {
@@ -132,18 +134,25 @@ h1, .brand {
 
 .social-link {
     display: inline-block;
-    font-size: 0.85rem;
+    font-size: 1.5rem;
     font-weight: 600;
     text-decoration: none;
-    color: var(--paper);
-    background-color: var(--ink);
+    color: var(--white);
+    background-color: var(--bgtransparent);
     border-radius: var(--radius);
-    padding: 0.5rem 1.1rem;
     transition: background-color 0.2s ease;
 }
 
 .social-link:hover {
-    background-color: var(--accent);
+    background-color: var(--bgtransparent);
+    transform: scale(1.25);
+}
+
+.social-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .hero-photo {
@@ -197,4 +206,68 @@ h1, .brand {
     .social-links {
         justify-content: flex-start;
     }
+}
+
+.experience-section {
+    padding: 4.5rem 0;
+    border-top: 1px solid var(--line);
+}
+
+.experience-section h2 {
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-size: 2rem;
+    color: var(--white);
+    margin-bottom: 2rem;
+}
+
+/* Layout Grid untuk daftar kartu */
+.experience-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Kartu Pengalaman */
+.experience-list article {
+    background-color: var(--back);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    position: relative;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+/* Efek Hover: Beri aksen border warna indigo saat disorot */
+.experience-list article:hover {
+    transform: translateY(-4px);
+    border-color: var(--indigo);
+}
+
+/* Judul Posisi / Role */
+.experience-list article h3 {
+    font-family: "Space Grotesk", -apple-system, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+}
+
+/* Nama Lembaga / Tahun */
+.experience-org {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Daftar Poin Rincian Tugas */
+.experience-list article ul {
+    padding-left: 1.25rem;
+}
+
+.experience-list article li {
+    font-size: 0.95rem;
+    color: var(--abu);
+    line-height: 1.6;
+    margin-bottom: 0.35rem;
 }
