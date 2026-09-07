@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,9 +12,9 @@
     --ink: #1c1917;
     --paper: #faf6f0;
     --white: #ffffff;
-    --accent: #00f0ff;
-    --accent-dark: #00b4d8;
-    --line: #e3d9c9;
+    --accent: #00c8f0;
+    --accent-dark: #00b8d9;
+    --line: #2d2638;
     --text-muted: #6b6459;
     --radius: 4px;
     --back: #161124;
@@ -51,7 +55,7 @@ h1, .brand {
 .brand {
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--ink);
+    color: var(--accent);
     text-decoration: none;
 }
 
@@ -61,9 +65,14 @@ h1, .brand {
 }
 
 .site-header nav a {
-    color: var(--ink);
+    color: var(--abu);
     text-decoration: none;
     font-size: 0.95rem;
+}
+
+/* hover saat kursor diarahkan maka akan berubah terang */
+.site-header nav a:hover{
+    color: var(--white)
 }
 
 .hero {
@@ -123,7 +132,7 @@ h1, .brand {
 
 .meta-row dd {
     font-weight: 600;
-    color: var(--abu);
+    color: var(--accent-dark);
 }
 
 .social-links {
@@ -223,7 +232,7 @@ h1, .brand {
 /* Layout Grid untuk daftar kartu */
 .experience-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: 1fr;
     gap: 1.5rem;
 }
 
@@ -254,6 +263,9 @@ h1, .brand {
 
 /* Nama Lembaga / Tahun */
 .experience-org {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 0.85rem;
     color: var(--accent);
     font-weight: 600;
