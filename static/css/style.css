@@ -217,7 +217,7 @@ h1, .brand {
     }
 }
 
-.experience-section {
+/* .experience-section {
     padding: 4.5rem 0;
     border-top: 1px solid var(--line);
 }
@@ -227,42 +227,42 @@ h1, .brand {
     font-size: 2rem;
     color: var(--white);
     margin-bottom: 2rem;
-}
+} */
 
 /* Layout Grid untuk daftar kartu */
-.experience-list {
+/* .experience-list {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
-}
+} */
 
 /* Kartu Pengalaman */
-.experience-list article {
+/* .experience-list article {
     background-color: var(--back);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     padding: 1.5rem;
     position: relative;
     transition: transform 0.2s ease, border-color 0.2s ease;
-}
+} */
 
 /* Efek Hover: Beri aksen border warna indigo saat disorot */
-.experience-list article:hover {
+/* .experience-list article:hover {
     transform: translateY(-4px);
     border-color: var(--indigo);
-}
+} */
 
 /* Judul Posisi / Role */
-.experience-list article h3 {
+/* .experience-list article h3 {
     font-family: "Space Grotesk", -apple-system, sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--white);
     margin-bottom: 0.25rem;
-}
+} */
 
 /* Nama Lembaga / Tahun */
-.experience-org {
+/* .experience-org {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -270,10 +270,10 @@ h1, .brand {
     color: var(--accent);
     font-weight: 600;
     margin-bottom: 1rem;
-}
+} */
 
 /* Daftar Poin Rincian Tugas */
-.experience-list article ul {
+/* .experience-list article ul {
     padding-left: 1.25rem;
 }
 
@@ -282,4 +282,58 @@ h1, .brand {
     color: var(--abu);
     line-height: 1.6;
     margin-bottom: 0.35rem;
+} */
+
+.experience-section {
+    padding: 4rem 0;
+    border-top: 1px solid var(--line);
+}
+
+.section-kicker {
+    color: var(--accent-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.experience-section h1 {
+    margin: 0.4rem 0 1.5rem;
+    font-size: 2rem;
+}
+
+.experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+}
+
+.experience-card {
+    padding: 1.25rem;
+    background-color: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.experience-category {
+    color: var(--accent-dark);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.experience-card h2 {
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.experience-description,
+.empty-state {
+    color: var(--text-muted);
+}
+
+.experience-status {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
