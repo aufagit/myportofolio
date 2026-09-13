@@ -273,9 +273,9 @@ h1, .brand {
 }
 
 /* Daftar Poin Rincian Tugas */
-/* /* .experience-list article ul {
+.experience-list article ul {
     padding-left: 1.25rem;
-} */
+}
 
 .experience-list article li {
     font-size: 0.95rem;

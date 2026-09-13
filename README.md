@@ -49,3 +49,32 @@ Keterbatasan AI:
 - AI menyuruh untuk membuat gridtemplate yang auto fit, namun setelah saya pertimbangkan hal ini ternyata membuat reader sulit untuk membaca karena ukuran cardnya terlalu kecil. Akhirnya saya ubah ukuran cardnya menjadi full width
 
 Berikut adalah link chat AI nya : https://share.gemini.google/ZDLm3tnEJD9C
+
+
+
+TUGAS 2
+1.
+- Client Request: Pengguna mengetik atau mengklik tautan halaman baru di browser, yang mengirimkan permintaan HTTP GET ke server web Django.
+- `portofolio/urls.py` :Permintaan di acc oleh konfigurasi URL. Di sini, rute awal dicocokkan dengan menggunakan fungsi `include('main.urls')`, kemudian dilakukan pemrosesan rute yang tersisa ke tingkat aplikasi `main`.
+- `main/urls.py`:Konfigurasi URL aplikasi spesifik (`'education/'`) dengan named route (`name='show_education'`) menuju fungsi control yang bersangkutan di `views.py`.
+- `main/views.py`: `show_education` bertindak sebagai logika bisnis. View mengeksekusi kueri ORM ke basis data melalui model dan membungkus data tersebut
+- `main/models.py`: Model `Education` merepresentasikan struktur tabel basis data di SQLite. Melalui Django ORM (`Education.objects.all()`), model mengeksekusi kueri SQL untuk mengambil seluruh baris data objek riwayat pendidikan dan mengembalikannya sebagai QuerySet.
+- Template (`education.html`): View memanggil fungsi `render()` dengan memberikan data konteks ke berkas template HTML. kemudian django mengolah dengan melakukan iterasi data dengan `{% for %}`, mengecek kondisi kosong dengan `{% empty %}`, serta memasukkan variabel konteks.
+- HTTP Response:Berkas HTML yang telah terisi data dinamis dikembalikan ke browser pengguna sebagai respons HTTP (status code 200 OK) untuk ditampilkan seutuhnya.
+
+2.
+- Memisahkan data dengan tampilan visual antarmuka secara bersih.
+- Data dapat ditambah, diubah, atau dihapus langsung lewat Django Admin tanpa menyentuh kode HTML atau deploy ulang.
+- Skema dan tipe data tervalidasi oleh model, serta data tersebut dapat digunakan ulang untuk kebutuhan rute lain (seperti API/JSON).
+
+3.
+- `makemigrations`: Mendeteksi perubahan pada `models.py` dan membuat berkas skrip migrasi baru.
+- `migrate`: Menerapkan skrip migrasi tersebut ke basis data.
+- Contoh: Menambahkan atribut baru `tes = models.FloatField()` pada class `Education` membutuhkan `makemigrations` untuk membuat berkas migrasinya, lalu `migrate` agar tabel di SQLite diperbarui.
+
+AI Disclosure
+- Tool: Gemini (Google).
+- Menanyakan cara-cara untuk menginput data model langsung selain dari terminal.
+- Mengubah struktur di `education.html` dan `experience.html`
+- Membantu memberikan solusi terkait struktur HTML
+Link AI: https://share.gemini.google/oB6Ks6rkewGH
