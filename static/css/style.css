@@ -217,7 +217,7 @@ h1, .brand {
     }
 }
 
-/* .experience-section {
+.experience-section {
     padding: 4.5rem 0;
     border-top: 1px solid var(--line);
 }
@@ -230,39 +230,39 @@ h1, .brand {
 } */
 
 /* Layout Grid untuk daftar kartu */
-/* .experience-list {
+.experience-list {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.5rem;
-} */
+}
 
 /* Kartu Pengalaman */
-/* .experience-list article {
+.experience-list article {
     background-color: var(--back);
     border: 1px solid var(--line);
     border-radius: var(--radius);
     padding: 1.5rem;
     position: relative;
     transition: transform 0.2s ease, border-color 0.2s ease;
-} */
+}
 
 /* Efek Hover: Beri aksen border warna indigo saat disorot */
-/* .experience-list article:hover {
+.experience-list article:hover {
     transform: translateY(-4px);
     border-color: var(--indigo);
-} */
+}
 
 /* Judul Posisi / Role */
-/* .experience-list article h3 {
+.experience-list article h3 {
     font-family: "Space Grotesk", -apple-system, sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--white);
     margin-bottom: 0.25rem;
-} */
+}
 
 /* Nama Lembaga / Tahun */
-/* .experience-org {
+.experience-org {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -270,21 +270,21 @@ h1, .brand {
     color: var(--accent);
     font-weight: 600;
     margin-bottom: 1rem;
-} */
+}
 
 /* Daftar Poin Rincian Tugas */
-/* .experience-list article ul {
+/* /* .experience-list article ul {
     padding-left: 1.25rem;
-}
+} */
 
 .experience-list article li {
     font-size: 0.95rem;
     color: var(--abu);
     line-height: 1.6;
     margin-bottom: 0.35rem;
-} */
+}
 
-.experience-section {
+/* .experience-section {
     padding: 4rem 0;
     border-top: 1px solid var(--line);
 }
@@ -336,4 +336,4 @@ h1, .brand {
     margin-top: 1rem;
     font-size: 0.85rem;
     font-weight: 600;
-}
+} */
