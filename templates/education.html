@@ -1,66 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ name }} - Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
-    <header class="site-header">
-        <div class="container">
-            <a href="{% url 'main:show_main' %}" class="brand">{{ name }}</a>
-            <nav>
-                <a href="{% url 'main:show_main' %}">Profile</a>
-                <a href="{% url 'main:show_experience' %}">Experience</a>
-                <a href="{% url 'main:show_education' %}">Education</a>
-            </nav>
-        </div>
-    </header>
-
+{% extends "base.html" %}
+{% block meta %}
+    <title>Education - {{ name }}</title>
+{% endblock meta %}
+{% block content %}
     <main>
         <section class="experience-section" id="education">
             <div class="container">
                 <p class="section-kicker">Latar Belakang Akademis</p>
-                <h2>Education</h2>
+                <div class="project-header">
+                    <h1>Education</h1>
+                    <a href="{% url 'main:create_education' %}" class="button project-add-button">
+                        <span aria-hidden="true">+</span>
+                        Tambah Pendidikan
+                    </a>
+                </div>
+
+                <form method="get" action="{% url 'main:show_education' %}" class="project-search">
+                    <input type="search"
+                           name="institution"
+                           value="{{ institution_query }}"
+                           placeholder="Cari berdasarkan nama institusi"
+                           class="project-search__input"
+                           aria-label="Cari berdasarkan nama institusi">
+                    <button type="submit" class="button">Cari</button>
+                </form>
 
                 <div class="experience-list">
                     {% for education in education_list %}
                         <article>
                             <h3>{{ education.institution }}</h3>
-
                             <p class="experience-org">
                                 {{ education.major }} ({{ education.get_degree_level_display }})
-
-                                {% if education.is_ongoing %}
-                                    <span>Sedang berlangsung</span>
-                                {% else %}
+                                {% if education.ended_at %}
                                     <span>Selesai</span>
+                                {% else %}
+                                    <span>Sedang berlangsung</span>
                                 {% endif %}
                             </p>
-
                             <ul>
                                 <li>{{ education.description }}</li>
                             </ul>
+                            <div class="project-card-actions">
+                                <div class="project-actions">
+                                    {% include "components/education_delete_modal.html" with education=education %}
+                                </div>
+                            </div>
                         </article>
                     {% empty %}
-                        <p class="empty-state">
-                            Belum ada riwayat pendidikan yang ditambahkan.
-                        </p>
+                        {% if institution_query %}
+                            <p class="empty-state">Tidak ada riwayat pendidikan dengan institusi tersebut.</p>
+                        {% else %}
+                            <p class="empty-state">Belum ada riwayat pendidikan yang ditambahkan.</p>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
         </section>
     </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
-        </div>
-    </footer>
-</body>
-</html>
+{% endblock content %}
