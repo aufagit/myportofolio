@@ -1,28 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{name}} - Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css">
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
-    <header class="site-header">
-        <div class="container">
-            <a href="{% url 'main:show_main' %}" class="brand">{{ name }}</a>
-            <nav>
-                <a href="{% url 'main:show_main' %}">Profile</a>
-                <a href="{% url 'main:show_experience' %}">Experience</a>
-                <a href="{% url 'main:show_education' %}">Education</a>
-            </nav>
-        </div>
-    </header>
+{% extends 'base.html' %}
 
-    <main>
+{% block meta %}
+    <title>Experience - {{ name }}</title>
+{% endblock meta %}
+
+{% block content %}
+<main>
     <section class="experience-section" id="experience">
         <div class="container">
             <p class="section-kicker">Perjalanan saya sejauh ini</p>
@@ -30,24 +13,18 @@
 
             <div class="experience-list">
                 {% for experience in experience_list %}
-
                     <article>
                         <h3>{{ experience.title }}</h3>
-
                         <p class="experience-org">
-
                             <span>{{ experience.organization }}</span>
-
                             <span>
                                 {{ experience.get_category_display }} 
                                 ({% if experience.is_ongoing %}Ongoing{% else %}Completed{% endif %})
                             </span>
                         </p>
-
                         <ul>
                             <li>{{ experience.description }}</li>
                         </ul>
-                        
                     </article>
                 {% empty %}
                     <p class="empty-state">
@@ -57,66 +34,5 @@
             </div>
         </div>
     </section>
-
-
-        <!-- <section class="experience-section" id="experience"> 
-            <div class="container experience">
-                <h2>Experience</h2>
-
-                <div class="experience-list">
-
-                    <article> 
-                        <h3>SuperMentor Staff</h3>
-                        <p class="experience-org">Dasar-Dasar Pemrograman 0
-                            <span>May 2026 - Present</span>
-                        </p>
-                        <ul>
-                            <li>Supervised and guided peer mentors throughout the mentoring sessions to ensure consistent, high-quality program delivery.</li>
-                        </ul>
-                    </article>
-
-                    <article> 
-                        <h3>Public Relations Staff</h3>
-                        <p class="experience-org">BEM Fasilkom UI
-                            <span>May 2026 - Present</span>
-                        </p>
-                        <ul>
-                            <li>Managed external partnerships and communications as part of the External Affairs (Expar) division, serving as the primary liaison between BEM Fasilkom UI and external stakeholders.</li>
-                            <li>Handled official communication channels, including BEM's official Instagram and WhatsApp, to address external inquiries, manage partnership proposals, and support collaborative initiatives.</li>
-                        </ul>
-                    </article>
-
-                    <article> 
-                        <h3>Human Resources Staff</h3>
-                        <p class="experience-org">COMPFEST
-                            <span>Mar 2026 - Present</span> 
-                        </p>
-                        <ul>
-                            <li>Managed the end-to-end recruitment process for UX Academy staff, from screening applications to conducting interviews to build a strong, capable team.</li>
-                        </ul>
-                    </article>
-
-                    <article> 
-                        <h3>Human Resources Staff</h3>
-                        <p class="experience-org">BETIS Fasilkom UI
-                            <span>Jan 2026 - Present</span>
-                        </p>
-                        <ul>
-                            <li>Served as the Master of Ceremony (MC) for the Betis Plenary Meeting, effectively managing transitions and communication for a 80+ person internal team during strategic planning sessions.</li>
-                        </ul>
-                    </article>
-
-                </div>
-            </div>
-        </section> -->
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2026 {{ name }}. Fakultas Ilmu Komputer, Universitas Indonesia.</p>
-        </div>
-    </footer>
-</body>
-</html>
-
-
+</main>
+{% endblock content %}
