@@ -78,3 +78,27 @@ AI Disclosure
 - Mengubah struktur di `education.html` dan `experience.html`
 - Membantu memberikan solusi terkait struktur HTML
 Link AI: https://share.gemini.google/oB6Ks6rkewGH
+
+
+TUGAS 3
+
+Pertanyaan Reflektif
+1.
+   - Model form dapat menghemat waktu karena Django otomatis mengatur tipe field di database ke form HTML lengkap dengan validasi bawaan. Hal ini juga mencegah redudansi kode.
+   - csrf_token ditambahkan untuk menghindari Cross-Site Request Forgery (CSRF). Token ini memastikan setiap request `POST` yang masuk adalah user sah dari aplikasi kita bukan pengguna dari third party yang menggunakan request palsu.
+
+2. 
+   - JSON lebih ringkas, tidak membutuhkan tag penutup berulang seperti XML, jadi ukuran datanya kecil dan transfer data ke jaringan bisa lebih cepat. Selain itu key-value JSON kompatibel dengan JavaScript dan mudah di terima oleh framework frontend baru.
+
+3. 
+   - Alur: Klien mengirim HTTP GET request ke endpoint API -> view memanggil model untuk query data dari database -> Objek `QuerySet` yang didapat diubah ke bentuk format teks JSON menggunakan serializer bawaan Django -> Data JSON dikembalikan dalam objek `HttpResponse` dengan header `application/json`.
+   - Peran Serialization: Data dari database berupa objek Python sangat kompleks dan juga klien tidak mengerti tipe data internal Python. Serialization diperlukan untuk menerjemahkan objek tersebut menjadi format string standar agar bisa dipahami oleh berbagai platform.
+
+AI Disclosure
+Tools AI yang Digunakan: Gemini 
+Bagian yang Dibantu:
+  - Penyesuaian template di web pbp dengan model yang sudah saya buat
+  - Penyesuaian ModelForm menggunakan parameter instance pada fungsi edit/update.
+Perbaikan Manual:
+  - Kode awal sempat mengalami error `TemplateSyntaxError` karena adanya komentar HTML sebelum tag `{% extends 'base.html' %}`. Perbaikan dilakukan secara manual dengan memastikan `{% extends %}` ditaruh persis di baris pertama file.
+  -  Error lagi dimana `TemplateDoesNotExist` pada komponen modal hapus karena letak path yang belum sesuai. 
