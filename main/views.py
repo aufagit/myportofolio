@@ -47,10 +47,13 @@ def show_education(request):
     education_list = [edu.object for edu in educations]
     institution_query = request.GET.get("institution", "").strip()
 
+    is_editor = request.user.is_authenticated and request.user.groups.filter(name="Editor").exists()
+
     context = {
         "name": "Aufa Nurcahyo",
         "education_list": education_list,
         "institution_query": institution_query,
+        "is_editor": is_editor, 
     }
     return render(request, "education.html", context)
 
@@ -96,20 +99,26 @@ def delete_education(request, education_id):
         return redirect("main:show_education")
     return redirect("main:show_education")
 
+@login_required(login_url="/login/")
 def edit_education(request, education_id):
+    is_editor = request.user.groups.filter(name="Editor").exists()
+    if not (request.user.is_superuser or is_editor):
+        raise PermissionDenied
+
     education = get_object_or_404(Education, pk=education_id)
     form = EducationForm(request.POST or None, instance=education)
-    
+
     if form.is_valid() and request.method == "POST":
         form.save()
-        return redirect('main:show_education')
-        
+        messages.success(request, "Riwayat pendidikan berhasil diperbarui!")
+        return redirect("main:show_education")
+
     context = {
-        'form': form,
-        'name': 'Aufa Nurcahyo',
-        'is_edit': True,
+        "name": "Aufa Nurcahyo",
+        "form": form,
+        "is_edit": True,
     }
-    return render(request, 'education_form.html', context)
+    return render(request, "education_form.html", context)
 
 def register(request):
     form = UserCreationForm(request.POST or None)
@@ -160,4 +169,4 @@ def toggle_star(request, education_id):
         else:
             education.starred_by.add(request.user)
 
-    return redirect("main:show_projects")
+    return redirect("main:show_education")

@@ -20,7 +20,7 @@ urlpatterns = [
     path("logout/", logout_user, name="logout"),
 
     path(
-    "projects/<uuid:project_id>/star/",
+    "projects/<uuid:education_id>/star/",
     toggle_star,
     name="toggle_star",
 ),

@@ -42,17 +42,22 @@
                             <ul>
                                 <li>{{ education.description }}</li>
                             </ul>
+                            
                             <div class="project-card-actions">
                                 {% include "components/education_star.html" with education=education %}
+
                                 <div class="project-actions">
-                                    <a href="{% url 'main:edit_education' education.id %}" class="button button-secondary">
-                                        Edit Riwayat
-                                    </a>
-                                    {% if user.is_superuser %}  
+                                    {% if user.is_superuser or is_editor %}
+                                        <a href="{% url 'main:edit_education' education.id %}" class="button button-secondary">
+                                            Edit Riwayat
+                                        </a>
+                                    {% endif %}
+
+                                    {% if user.is_superuser %}
                                         {% include "components/education_delete_modal.html" with education=education %}
                                     {% endif %}
+                                </div>
                             </div>
-                        </div>
                         </article>
                     {% empty %}
                         {% if institution_query %}
