@@ -102,3 +102,10 @@ Bagian yang Dibantu:
 Perbaikan Manual:
   - Kode awal sempat mengalami error `TemplateSyntaxError` karena adanya komentar HTML sebelum tag `{% extends 'base.html' %}`. Perbaikan dilakukan secara manual dengan memastikan `{% extends %}` ditaruh persis di baris pertama file.
   -  Error lagi dimana `TemplateDoesNotExist` pada komponen modal hapus karena letak path yang belum sesuai. 
+
+Tugas 4
+AI Disclosure
+Tools AI yang Digunakan: Gemini 
+- toggle_star belum connect
+- invalid block tag'empty pada education.html
+- menanyakan cara mengganti color sebuah class
