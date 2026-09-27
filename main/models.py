@@ -1,4 +1,5 @@
 import uuid
+from django.contrib.auth.models import User
 from django.db import models
 
 class Experience(models.Model):
@@ -40,6 +41,8 @@ class Education(models.Model):
     description = models.TextField()
     started_at = models.DateTimeField(auto_now_add=True)
     ended_at = models.DateTimeField(blank=True, null=True)
+    starred_by = models.ManyToManyField(
+        User, related_name="starred_educations", blank=True)
 
     def __str__(self):
         return f"{self.major} - {self.institution}"
@@ -47,3 +50,5 @@ class Education(models.Model):
     @property
     def is_ongoing(self):
         return self.ended_at is None
+
+    
