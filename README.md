@@ -109,3 +109,21 @@ Tools AI yang Digunakan: Gemini
 - toggle_star belum connect
 - invalid block tag'empty pada education.html
 - menanyakan cara mengganti color sebuah class
+
+
+Tugas 5
+- Debouncing adalah teknik untuk membatasi seberapa sering suatu fungsi dijalankan. Fungsi ini menunda eksekusi sampai pengguna berhenti melakukan aksi tertentu selama durasi waktu tertentu.
+- Fungsi await adalah menahan eksekusi kode berikutnya sampai proses fetch() selesai menerima respon dari server. Jika tidak menggunakan await, variabel hanya akan berisi objek Promise berstatus pending (bukan data asli), sehingga kode yang mencoba mengolah data tersebut akan error.
+- XSS adalah serangan dengan menyisipkan script berbahaya ke dalam data aplikasi agar dieksekusi oleh browser pengguna lain. AJAX/JavaScript lebih rentan karena tidak memiliki pengaman otomatis saat menyisipkan HTML (misal via innerHTML), sedangkan template Django secara default memiliki fitur Auto-escaping yang otomatis mengubah karakter berbahaya menjadi teks biasa.
+
+AI Disclosure
+
+Pada Tugas 5 ini, saya menggunakan Google Gemini sebagai asisten debugging.
+
+- Strategi Prompting: Mengirimkan potongan kode modal, fetch, dan views untuk mengecek bug serta validasi keamanan.
+
+- Bagian yang Dibantu: Validasi strip_tags pada forms.py, pengecekan ID form HTML, dan konfirmasi jaringan debouncing.
+
+- Keterbatasan AI: AI sempat memberikan penempatan indentasi fungsi clean_field yang keliru (di dalam class Meta).
+
+- Perbaikan Manual: Memperbaiki indentasi fungsi clean_field di luar class Meta, menghapus event listener ganda pada form, dan melakukan tes input script XSS manual.

@@ -73,7 +73,6 @@ def create_education(request):
 
 def get_education_json(request):
     institution_query = request.GET.get("institution", "").strip()
-    # Pastikan prefetch_related mengarah ke field yang benar
     educations = Education.objects.prefetch_related('starred_by').all()
     
     if institution_query:

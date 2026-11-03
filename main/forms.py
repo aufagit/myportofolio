@@ -47,20 +47,20 @@ class EducationForm(ModelForm):
         }
 
         # Method clean diletakkan sejajar dengan class Meta (di luar class Meta)
-        def clean_institution(self):
-            institution = strip_tags(self.cleaned_data.get("institution", "")).strip()
-            if not institution:
-                raise ValidationError("Nama institusi tidak boleh hanya berisi tag HTML.")
-            return institution
+    def clean_institution(self):
+        institution = strip_tags(self.cleaned_data.get("institution", "")).strip()
+        if not institution:
+            raise ValidationError("Nama institusi tidak boleh hanya berisi tag HTML.")
+        return institution
 
-        def clean_major(self):
-            major = strip_tags(self.cleaned_data.get("major", "")).strip()
-            if not major:
-                raise ValidationError("Jurusan tidak boleh hanya berisi tag HTML.")
-            return major
+    def clean_major(self):
+        major = strip_tags(self.cleaned_data.get("major", "")).strip()
+        if not major:
+            raise ValidationError("Jurusan tidak boleh hanya berisi tag HTML.")
+        return major
 
-        def clean_description(self):
-            description = strip_tags(self.cleaned_data.get("description", "")).strip()
-            if not description:
-                raise ValidationError("Deskripsi tidak boleh hanya berisi tag HTML.")
-            return description
+    def clean_description(self):
+        description = strip_tags(self.cleaned_data.get("description", "")).strip()
+        if not description:
+             raise ValidationError("Deskripsi tidak boleh hanya berisi tag HTML.")
+        return description
