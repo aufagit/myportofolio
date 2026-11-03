@@ -18,11 +18,9 @@
                 aria-label="Tutup form tambah pendidikan">×</button>
 
         <h2 id="add-education-modal-title">Tambah Riwayat Pendidikan Baru</h2>
-        
-        <!-- PERBAIKAN ADA DI SINI: action dihapus, diganti onsubmit -->
+
         <form id="education-form"
               method="post"
-              onsubmit="event.preventDefault(); addEducation(event);"
               class="project-form">
             {% csrf_token %}
             {% for field in form %}

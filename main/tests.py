@@ -39,7 +39,7 @@ class MainTest(TestCase):
         self.assertContains(response, self.experience.title)
         self.assertContains(response, self.experience.description)
         self.assertContains(response, "Part-Time")
-        self.assertContains(response, "Sedang berlangsung")
+        self.assertContains(response, "(Ongoing)")
         self.assertContains(response, f'href="{reverse("main:show_main")}"')
 
     def test_empty_experience_page(self):
@@ -54,8 +54,8 @@ class MainTest(TestCase):
         response = self.client.get(reverse("main:show_experience"))
 
         self.assertFalse(self.experience.is_ongoing)
-        self.assertContains(response, "Selesai")
-        self.assertNotContains(response, "Sedang berlangsung")
+        self.assertContains(response, "(Completed)")
+        self.assertNotContains(response, "(Ongoing)")
 
 class EducationTest(TestCase):
     def setUp(self):
@@ -63,36 +63,60 @@ class EducationTest(TestCase):
             institution="University of Indonesia",
             degree_level="undergraduate",
             major="Computer Science",
-            description="Undergraduate student in Computer Science.",
-        )
+            description="Undergraduate student in Computer Science.",)
 
     def test_education_model(self):
         self.assertEqual(str(self.education), "Computer Science - University of Indonesia")
         self.assertEqual(self.education.degree_level, "undergraduate")
         self.assertTrue(self.education.is_ongoing)
 
+    
     def test_education_page(self):
         response = self.client.get(reverse("main:show_education"))
 
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "education.html")
-        self.assertContains(response, self.education.institution)
-        self.assertContains(response, self.education.major)
-        self.assertContains(response, self.education.description)
-        self.assertContains(response, "Sedang berlangsung")
+        self.assertContains(response, 'id="grid"')
+        self.assertContains(response, 'id="education-search-form"')
         self.assertContains(response, f'href="{reverse("main:show_main")}"')
+
+        api_response = self.client.get(reverse("api:education-list"))
+
+        self.assertEqual(api_response.status_code, 200)
+        self.assertEqual(len(api_response.data), 1)
+        self.assertEqual(
+            api_response.data[0]["institution"],
+            self.education.institution,)
+        
+        self.assertEqual(
+            api_response.data[0]["major"],
+            self.education.major,)
+        
+        self.assertEqual(
+            api_response.data[0]["description"],
+            self.education.description,)
 
     def test_empty_education_page(self):
         Education.objects.all().delete()
         response = self.client.get(reverse("main:show_education"))
 
-        self.assertContains(response, "Belum ada riwayat pendidikan yang ditambahkan.")
+        self.assertContains(
+            response,
+            "Belum ada riwayat pendidikan yang ditambahkan atau ditemukan.")
+
+        api_response = self.client.get(reverse("api:education-list"))
+
+        self.assertEqual(api_response.status_code, 200)
+        self.assertEqual(api_response.data, [])
 
     def test_completed_education(self):
         self.education.ended_at = timezone.now()
         self.education.save()
-        response = self.client.get(reverse("main:show_education"))
 
         self.assertFalse(self.education.is_ongoing)
-        self.assertContains(response, "Selesai")
-        self.assertNotContains(response, "Sedang berlangsung")
+
+        api_response = self.client.get(
+            reverse("api:education-detail", args=[self.education.id]))
+
+        self.assertEqual(api_response.status_code, 200)
+        self.assertIsNotNone(api_response.data["ended_at"])
