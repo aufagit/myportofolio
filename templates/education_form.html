@@ -10,7 +10,7 @@
         <div class="container">
             <h2>{% if is_edit %}Edit Education{% else %}Add New Education{% endif %}</h2>
             
-            <form method="post" class="project-form">
+            <form method="post" class="project-form" id="education-edit-form">
                 {% csrf_token %}
                 {% for field in form %}
                     <div class="form-group">
@@ -30,4 +30,83 @@
         </div>
     </section>
 </main>
+
+
+{% if is_edit %}
+<script>
+    const educationEditForm = document.getElementById(
+        'education-edit-form'
+    );
+
+    const EDUCATION_DETAIL_ENDPOINT =
+        "{% url 'api:education-detail' form.instance.id %}";
+
+    educationEditForm.addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const submitButton = educationEditForm.querySelector(
+            'button[type="submit"]'
+        );
+
+        if (submitButton.disabled) return;
+        submitButton.disabled = true;
+
+        try {
+            const formData = new FormData(educationEditForm);
+
+            const payload = Object.fromEntries([
+                'institution',
+                'degree_level',
+                'major',
+                'description',
+                'ended_at'
+            ].map(name => [name, formData.get(name)]));
+
+            payload.ended_at = payload.ended_at || null;
+
+            const csrfToken = educationEditForm.querySelector(
+                '[name="csrfmiddlewaretoken"]'
+            ).value;
+
+            const response = await fetch(
+                EDUCATION_DETAIL_ENDPOINT,
+                {
+                    method: 'PATCH',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: JSON.stringify(payload)
+                }
+            );
+
+            const data = await response.json().catch(() => ({}));
+
+            if (!response.ok) {
+                const errorMessage = Object.values(data)
+                    .flat()
+                    .filter(value => typeof value === 'string')
+                    .join(' ');
+
+                throw new Error(
+                    errorMessage || `HTTP ${response.status}`
+                );
+            }
+
+            window.location.href = "{% url 'main:show_education' %}";
+
+        } catch (error) {
+            showToast(
+                'Gagal memperbarui Education',
+                error.message,
+                'error'
+            );
+        } finally {
+            submitButton.disabled = false;
+        }
+    });
+</script>
+{% endif %}
+
 {% endblock content %}
