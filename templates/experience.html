@@ -1,38 +1,62 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block meta %}
     <title>Experience - {{ name }}</title>
+    <link rel="stylesheet" href="{% static 'css/experience_refresh.css' %}?v=1">
 {% endblock meta %}
 
 {% block content %}
-<main>
-    <section class="experience-section" id="experience">
-        <div class="container">
-            <p class="section-kicker">Perjalanan saya sejauh ini</p>
-            <h2>Experience</h2>
-
-            <div class="experience-list">
-                {% for experience in experience_list %}
-                    <article>
-                        <h3>{{ experience.title }}</h3>
-                        <p class="experience-org">
-                            <span>{{ experience.organization }}</span>
-                            <span>
-                                {{ experience.get_category_display }} 
-                                ({% if experience.is_ongoing %}Ongoing{% else %}Completed{% endif %})
-                            </span>
-                        </p>
-                        <ul>
-                            <li>{{ experience.description }}</li>
-                        </ul>
-                    </article>
-                {% empty %}
-                    <p class="empty-state">
-                        Belum ada pengalaman yang ditambahkan.
-                    </p>
-                {% endfor %}
+<main class="xp-page" id="experience">
+    <div class="xp-wrap">
+        <header class="xp-heading">
+            <div class="xp-heading-main">
+                <p class="xp-eyebrow"><span class="xp-eyebrow-line" aria-hidden="true"></span> MY JOURNEY</p>
+                <h1>Experience<span class="xp-title-dot">.</span></h1>
+                <p class="xp-intro">A collection of roles, collaborations, and experiences that have shaped my journey.</p>
             </div>
+            <div class="xp-count" aria-label="{{ experience_list|length }} experiences">
+                <strong>{{ experience_list|length|stringformat:"02d" }}</strong>
+                <span>EXPERIENCES</span>
+            </div>
+        </header>
+
+        <div class="xp-list">
+            {% for experience in experience_list %}
+            <div class="xp-entry">
+                <div class="xp-rail" aria-hidden="true">
+                    <span class="xp-index">{{ forloop.counter|stringformat:"02d" }}</span>
+                    <span class="xp-rail-dot"></span>
+                </div>
+
+                <article class="xp-card" >
+                    <div class="xp-card-top">
+                        <span class="xp-organization">{{ experience.organization }}</span>
+                        <div class="xp-tags" aria-label="Role type and status">
+                            <span class="xp-type">{{ experience.get_category_display }}</span>
+                            {% if experience.is_ongoing %}
+                                <span class="xp-status xp-status--active"><span class="xp-status-dot" aria-hidden="true"></span> (Ongoing)</span>
+                            {% else %}
+                                <span class="xp-status"><span class="xp-status-dot" aria-hidden="true"></span> (Completed)</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <h2 class="xp-role">{{ experience.title }}</h2>
+
+                    {% if experience.description %}
+                        <div class="xp-description">{{ experience.description|linebreaksbr }}</div>
+                    {% endif %}
+
+                    <span class="xp-card-accent" aria-hidden="true"></span>
+                </article>
+            </div>
+            {% empty %}
+                <div class="xp-empty">Belum ada pengalaman yang ditambahkan.</div>
+            {% endfor %}
         </div>
-    </section>
+
+        <div class="xp-footer-line" aria-hidden="true"><span></span></div>
+    </div>
 </main>
 {% endblock content %}

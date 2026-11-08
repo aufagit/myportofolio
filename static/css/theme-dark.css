@@ -1,0 +1,410 @@
+/* Portfolio theme override.
+   Load LAST, after style.css and page-specific stylesheets.
+   Existing classes, API calls, and animations are untouched. */
+
+/* Smooth, cheap colour transitions; no full-screen filter or animation. */
+body, .site-header nav, .xp-card, #education .experience-list article,
+#education .project-search__input, .project-form, .toast-component {
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+
+/* Toggle button — lives inside the current nav / pill. */
+.theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(111, 148, 178, .24);
+  background: rgba(255, 255, 255, .55);
+  color: #183044;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color .2s ease, transform .2s ease;
+}
+.theme-toggle:hover { background: #fff; transform: translateY(-1px); }
+.theme-toggle:focus-visible { outline: 3px solid #3e99ca; outline-offset: 3px; }
+
+/* Dark theme tokens */
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --back: #0c1422;
+  --paper: #172639;
+  --ink: #eaf2fa;
+  --white: #f3f8ff;
+  --abu: #b6c8d8;
+  --text-muted: #9aaec1;
+  --accent: #83cafa;
+  --accent-dark: #77b9ea;
+  --line: rgba(172, 204, 234, .16);
+}
+html[data-theme="dark"] body {
+  background: #0c1422;
+  color: #eaf2fa;
+}
+html[data-theme="dark"] .site-footer {
+  background: #0c1422;
+  color: #9fb4c9;
+  border-color: rgba(172, 204, 234, .14);
+}
+
+/* Pill navigation: do not change its fixed/hover mechanics. */
+html[data-theme="dark"] .site-header nav,
+html[data-theme="dark"] .nav-pill,
+html[data-theme="dark"] .nav-container {
+  background-color: rgba(19, 34, 52, .89);
+  border-color: rgba(176, 213, 244, .16);
+  color: #e7f1fa;
+}
+html[data-theme="dark"] .site-header nav a,
+html[data-theme="dark"] .site-header .nav-user,
+html[data-theme="dark"] .site-header nav span {
+  color: #c7d8e9 !important;
+}
+html[data-theme="dark"] .site-header nav a:hover,
+html[data-theme="dark"] .site-header nav a.active,
+html[data-theme="dark"] .site-header nav a[aria-current="page"] {
+  color: #fff !important;
+  background-color: rgba(149, 192, 226, .15);
+}
+html[data-theme="dark"] .theme-toggle {
+  border-color: rgba(182, 220, 246, .2);
+  background: rgba(159, 205, 242, .13);
+  color: #ffe5a9;
+}
+html[data-theme="dark"] .theme-toggle:hover { background: rgba(159, 205, 242, .25); }
+
+/* Profile: remove light-blue sky and use midnight-blue clouds. */
+html[data-theme="dark"] body:has(#profile) {
+  background: linear-gradient(180deg, #101f36 0%, #111d30 62%, #0c1422 100%) !important;
+}
+html[data-theme="dark"] #profile.hero {
+  background: transparent !important;
+  color: #eaf2fa;
+}
+html[data-theme="dark"] #profile .hero-identity h1,
+html[data-theme="dark"] #profile h1,
+html[data-theme="dark"] #profile .meta-row dd {
+  color: #f2f7ff;
+}
+html[data-theme="dark"] #profile .hero-kicker { color: #98c7e8; }
+html[data-theme="dark"] #profile .bio,
+html[data-theme="dark"] #profile .meta-row dt { color: #b3c5d8; }
+html[data-theme="dark"] #profile .hero-actions .button-secondary {
+  color: #e7f1fa;
+  background-color: #203650;
+  border-color: rgba(182, 220, 246, .24);
+}
+/* Keep existing cloud keyframes; only alter its visual colour. */
+html[data-theme="dark"] #profile .cloud {
+  background: rgba(208, 231, 252, .20) !important;
+}
+html[data-theme="dark"] #profile .cloud::before,
+html[data-theme="dark"] #profile .cloud::after {
+  background: inherit;
+}
+
+/* Experience (from experience_refresh.css) */
+html[data-theme="dark"] .xp-page {
+  --xp-ink: #eff5fc;
+  --xp-muted: #a9bed0;
+  --xp-blue: #93cef0;
+  --xp-border: rgba(173, 207, 235, .17);
+  color: #eff5fc;
+  background: linear-gradient(180deg, #101e32 0%, #101a2b 55%, #0c1422 100%) !important;
+}
+html[data-theme="dark"] .xp-card {
+  background: #192a40 !important;
+  border-color: #30465e !important;
+  box-shadow: 0 13px 28px rgba(0, 0, 0, .12);
+}
+html[data-theme="dark"] .xp-card:hover { border-color: #5985a8 !important; }
+html[data-theme="dark"] .xp-card .xp-role,
+html[data-theme="dark"] .xp-heading h1 { color: #f3f8ff; }
+html[data-theme="dark"] .xp-card .xp-organization,
+html[data-theme="dark"] .xp-eyebrow { color: #90c9eb; }
+html[data-theme="dark"] .xp-card .xp-description,
+html[data-theme="dark"] .xp-intro { color: #b7c8da; }
+html[data-theme="dark"] .xp-type,
+html[data-theme="dark"] .xp-status {
+  color: #bed2e2;
+  background: #25384e;
+  border-color: #385169;
+}
+html[data-theme="dark"] .xp-index {
+  background: #20374d;
+  color: #a4d7f6;
+  border-color: #537590;
+  box-shadow: none;
+}
+html[data-theme="dark"] .xp-rail-dot { outline-color: #101e32; }
+html[data-theme="dark"] .xp-empty {
+  background: #192a40;
+  color: #b7c8da;
+  border-color: #385169;
+}
+
+/* Education (editorial_v3 CSS: scoped styles use their own palette). */
+html[data-theme="dark"] #education {
+  --edu-ink: #eef5fc;
+  --edu-muted: #acbfd2;
+  --edu-line: #30465e;
+  --edu-blue: #92cbed;
+  --edu-white: #172a3f;
+  color: #eef5fc;
+  background: linear-gradient(180deg, #101e32 0%, #101a2b 54%, #0c1422 100%) !important;
+}
+html[data-theme="dark"] #education .section-kicker { color: #9acbed; }
+html[data-theme="dark"] #education .project-header h1,
+html[data-theme="dark"] #education .experience-list article h3 { color: #f0f7ff !important; }
+html[data-theme="dark"] #education .experience-list article,
+html[data-theme="dark"] #education .experience-list article:nth-child(odd),
+html[data-theme="dark"] #education .experience-list article:nth-child(even) {
+  background: linear-gradient(90deg, #192f47 0 91px, #18283c 91px) !important;
+  color: #eaf1fa;
+  border-color: #304861;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
+}
+html[data-theme="dark"] #education .experience-list article:hover { border-color: #5d8baa !important; }
+html[data-theme="dark"] #education .experience-list article::before,
+html[data-theme="dark"] #education .experience-list article:nth-child(odd)::before,
+html[data-theme="dark"] #education .experience-list article:nth-child(even)::before {
+  color: #a2d6f5;
+  background: #263e55;
+  border-color: #527c9a;
+}
+html[data-theme="dark"] #education .experience-org { color: #b8c9d8; }
+html[data-theme="dark"] #education .experience-org span {
+  color: #c1d2e3;
+  background: #24364b;
+  border-color: #375068;
+}
+html[data-theme="dark"] #education .experience-list article li { color: #b4c6d8; }
+html[data-theme="dark"] #education .project-card-actions { border-color: #34485e !important; }
+html[data-theme="dark"] #education .project-search__input {
+  color: #eaf2fa;
+  background-color: #1c2e43;
+  border-color: #38536c;
+}
+html[data-theme="dark"] #education .project-search__input::placeholder { color: #9db4c9; }
+html[data-theme="dark"] #education .project-search > button,
+html[data-theme="dark"] #education .project-add-button {
+  color: #f5f9fe;
+  background: #254c6c;
+  border-color: #3c7095;
+}
+html[data-theme="dark"] #education .button-star,
+html[data-theme="dark"] #education .project-actions .button,
+html[data-theme="dark"] #education .project-actions .button-secondary,
+html[data-theme="dark"] #education .project-actions .button-danger {
+  color: #d7e5f0 !important;
+  background: #25394e !important;
+  border-color: #3b5267 !important;
+}
+html[data-theme="dark"] #education .project-actions .button-danger:hover {
+  color: #ffb5ae !important;
+  background: #4d2731 !important;
+}
+html[data-theme="dark"] #education .star-count { color: #d5e7f4; background: #38536a; }
+
+/* Forms, modal and toasts (Education add/edit). */
+html[data-theme="dark"] .project-form,
+html[data-theme="dark"] .modal-content,
+html[data-theme="dark"] .modal-card,
+html[data-theme="dark"] .toast-component {
+  color: #edf4fc;
+  background-color: #1b2d42;
+  border-color: #3a536c;
+}
+html[data-theme="dark"] .project-form input,
+html[data-theme="dark"] .project-form select,
+html[data-theme="dark"] .project-form textarea,
+html[data-theme="dark"] .form-group input,
+html[data-theme="dark"] .form-group select,
+html[data-theme="dark"] .form-group textarea {
+  color: #eef5fc;
+  background: #14263a;
+  border-color: #405873;
+}
+html[data-theme="dark"] .form-group label,
+html[data-theme="dark"] .experience-section h2 { color: #eef5fc !important; }
+html[data-theme="dark"] .toast-message { color: #bbcada; }
+
+/* Basic pages that still use older .experience-list markup. */
+html[data-theme="dark"] .experience-section:not(#education) {
+  background: linear-gradient(180deg, #101e32, #0c1422);
+}
+html[data-theme="dark"] .experience-section:not(#education) .experience-list article {
+  color: #eaf2fa;
+  background: #192a40;
+  border-color: #30465e;
+}
+
+@media (max-width: 720px) {
+  html[data-theme="dark"] #education .experience-list article,
+  html[data-theme="dark"] #education .experience-list article:nth-child(odd),
+  html[data-theme="dark"] #education .experience-list article:nth-child(even) {
+    background: linear-gradient(90deg, #192f47 0 56px, #18283c 56px) !important;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body, .site-header nav, .xp-card, #education .experience-list article,
+  #education .project-search__input, .project-form, .toast-component { transition: none; }
+}
+
+
+/* =========================================
+   DARK MODE UI FIX
+   ========================================= */
+
+/* 1. THEME TOGGLE - FLOATING TOP RIGHT */
+
+body > #theme-toggle {
+    position: fixed !important;
+    top: 24px !important;
+    right: 32px !important;
+    bottom: auto !important;
+    left: auto !important;
+
+    z-index: 10001 !important;
+
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    border: 1px solid rgba(130, 160, 185, 0.28);
+    background: rgba(255, 255, 255, 0.8);
+    color: #142438;
+
+    box-shadow: 0 6px 22px rgba(15, 35, 55, 0.10);
+    backdrop-filter: blur(8px);
+
+    cursor: pointer;
+    pointer-events: auto !important;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease;
+}
+
+body > #theme-toggle:hover {
+    transform: translateY(-2px);
+    background: #ffffff;
+}
+
+/* Dark mode toggle */
+html[data-theme="dark"] body > #theme-toggle {
+    background: #1c3047;
+    color: #e3effb;
+    border-color: #3a526b;
+}
+
+html[data-theme="dark"] body > #theme-toggle:hover {
+    background: #2a435e;
+}
+
+
+/* 2. CLOUDS - OVERCAST / MENDUNG */
+
+html[data-theme="dark"] body:has(#profile) {
+    background: linear-gradient(
+        180deg,
+        #101d2e 0%,
+        #142237 55%,
+        #0d1726 100%
+    ) !important;
+}
+
+/* Warna awan lebih redup */
+html[data-theme="dark"] #profile .cloud {
+    background: rgba(143, 164, 184, 0.30) !important;
+    opacity: 0.30 !important;
+
+    box-shadow: none !important;
+    filter: blur(6px) !important;
+}
+
+/* Bentuk awan mengikuti warna yang sama */
+html[data-theme="dark"] #profile .cloud::before,
+html[data-theme="dark"] #profile .cloud::after {
+    background: rgba(143, 164, 184, 0.30) !important;
+    box-shadow: none !important;
+}
+
+/* Animasi .cloud tidak diubah */
+
+
+/* 3. VIEW EXPERIENCE BUTTON */
+
+html[data-theme="dark"] #profile .hero-actions .button-primary,
+html[data-theme="dark"] #profile .hero-actions .button:first-child {
+    background: #b9daf0 !important;
+    color: #142438 !important;
+    border: 1px solid #b9daf0 !important;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.10);
+}
+
+html[data-theme="dark"] #profile .hero-actions .button-primary:hover,
+html[data-theme="dark"] #profile .hero-actions .button:first-child:hover {
+    background: #d4e9f8 !important;
+    color: #102033 !important;
+}
+
+
+/* 4. GITHUB, LINKEDIN, EMAIL ICONS */
+
+html[data-theme="dark"] #profile .social-links .social-link {
+    background: #23384e !important;
+    color: #e4effa !important;
+
+    border: 1px solid #385169 !important;
+    border-radius: 50% !important;
+
+    width: 44px;
+    height: 44px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+html[data-theme="dark"] #profile .social-link i,
+html[data-theme="dark"] #profile .social-link svg {
+    color: #e4effa !important;
+    fill: currentColor;
+}
+
+html[data-theme="dark"] #profile .social-link:hover {
+    background: #365572 !important;
+    transform: translateY(-3px);
+}
+
+
+/* 5. RESPONSIVE */
+
+@media (max-width: 900px) {
+    body > #theme-toggle {
+        top: auto !important;
+        bottom: 20px !important;
+        right: 20px !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body > #theme-toggle,
+    html[data-theme="dark"] #profile .social-link {
+        transition: none;
+    }
+}

@@ -9,6 +9,10 @@ class EducationSerializer(serializers.ModelSerializer):
     star_count = serializers.SerializerMethodField()
     is_starred = serializers.SerializerMethodField()
     starred_by_names = serializers.SerializerMethodField()
+    started_at = serializers.DateTimeField(
+        input_formats=["%Y-%m-%d", "iso-8601"],
+        required=False
+    )
 
     class Meta:
         model = Education
@@ -24,7 +28,7 @@ class EducationSerializer(serializers.ModelSerializer):
             "is_starred",
             "starred_by_names",
         ]
-        read_only_fields = ["id", "started_at"]
+        read_only_fields = ["id"]
 
     def validate_institution(self, value):
         value = strip_tags(value).strip()

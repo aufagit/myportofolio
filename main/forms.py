@@ -12,6 +12,7 @@ class EducationForm(ModelForm):
             "degree_level",
             "major",
             "description",
+            "started_at",
             "ended_at",
         ]
         labels = {
@@ -19,6 +20,7 @@ class EducationForm(ModelForm):
             "degree_level": "Tingkat Gelar",
             "major": "Jurusan / Program Studi",
             "description": "Deskripsi",
+            "started_at": "Tanggal Mulai",
             "ended_at": "Tanggal Selesai (Kosongkan jika masih berlangsung)",
         }
         widgets = {
@@ -38,6 +40,10 @@ class EducationForm(ModelForm):
                     "placeholder": "Ceritakan pencapaian atau fokus studi...",
                     "rows": 3,
                 }
+            ),
+            "started_at": DateInput(
+                format="%Y-%m-%d",
+                attrs={"type": "date"}
             ),
             "ended_at": DateInput(
                 attrs={

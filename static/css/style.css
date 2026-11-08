@@ -888,3 +888,810 @@ h1, .brand {
 .toast-success { border-left: 4px solid #22c55e; }
 .toast-error { border-left: 4px solid #b42318; }
 .toast-normal { border-left: 4px solid var(--accent); }
+
+/* Light theme */
+
+:root {
+    --ink: #152333;
+    --text-muted: #495c6e;
+    --accent: #235d86;
+    --accent-dark: #235d86;
+    --line: #d5e2ec;
+    --paper: #fff;
+    --back: #f3f9fd;
+    --abu: #495c6e;
+    --radius: 16px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: var(--ink);
+    background:
+        linear-gradient(180deg, #dceefb 0, #f3f9fd 430px, #fff 760px);
+    background-size: 100% 730px, 100% 100%;
+}
+
+main {
+    flex: 1;
+}
+
+.container {
+    width: min(100% - 3rem, 68rem);
+    max-width: none;
+    margin-inline: auto;
+    padding-inline: 0;
+}
+
+a {
+    color: var(--accent);
+}
+
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.hide {
+    display: none !important;
+}
+
+/* Floating navigation */
+
+.site-header.portfolio-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0.75rem;
+    border: 0;
+    background: transparent;
+    pointer-events: none;
+}
+
+.portfolio-header .nav-dock {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    max-width: 100%;
+    padding: 0.3rem;
+    border: 1px solid #fff;
+    border-radius: 999px;
+    background: rgb(236 248 255 / 94%);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 10px 30px rgb(31 70 101 / 11%);
+    pointer-events: auto;
+}
+
+.portfolio-header .nav-dock a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 0.75rem;
+    border-radius: 999px;
+    color: var(--ink);
+    font-size: 0.85rem;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.portfolio-header .nav-dock a:hover,
+.portfolio-header .nav-dock a[aria-current="page"] {
+    color: var(--ink);
+    background: #fff;
+    box-shadow: 0 2px 5px rgb(31 70 101 / 9%);
+}
+
+.nav-dock i {
+    width: 1.25rem;
+    text-align: center;
+}
+
+.nav-dock .nav-user {
+    min-width: 0;
+    max-width: 7rem;
+    padding-inline: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    overflow-wrap: anywhere;
+}
+
+@media (min-width: 600px) {
+    .nav-dock .nav-label {
+        overflow: hidden;
+        padding-inline-start: 0.35rem;
+        animation: reveal-portfolio-nav 560ms ease-out 420ms backwards;
+    }
+}
+
+@keyframes reveal-portfolio-nav {
+    from {
+        max-width: 0;
+        padding-inline-start: 0;
+        opacity: 0;
+    }
+
+    to {
+        max-width: 8rem;
+        opacity: 1;
+    }
+}
+
+/* Profile */
+
+#profile {
+    padding-block: clamp(3rem, 8vw, 7rem);
+}
+
+#profile .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+    grid-template-areas:
+        "identity photo"
+        "details  photo";
+    gap: 1.25rem clamp(2rem, 7vw, 6rem);
+}
+
+.hero-identity {
+    grid-area: identity;
+}
+
+.hero-details {
+    grid-area: details;
+}
+
+#profile .hero-kicker,
+.experience-section .section-kicker {
+    color: var(--accent);
+}
+
+#profile h1 {
+    color: var(--ink);
+    font-size: clamp(3rem, 7.4vw, 6.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.065em;
+    text-wrap: balance;
+}
+
+#profile .bio {
+    max-width: 44ch;
+    margin: 0;
+    color: var(--text-muted);
+    font-size: clamp(1rem, 2vw, 1.18rem);
+}
+
+.hero-actions,
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+}
+
+.hero-actions {
+    margin-block: 1.5rem;
+}
+
+#profile .hero-actions .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    text-decoration: none;
+}
+
+#profile .button-primary {
+    color: #fff;
+    background: var(--ink);
+}
+
+#profile .button-secondary {
+    color: var(--ink);
+    background: #fff;
+}
+
+#profile .meta-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.5rem;
+    margin-block: 0 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+}
+
+#profile .meta-row dt {
+    color: var(--text-muted);
+}
+
+#profile .meta-row dd {
+    margin: 0;
+    color: var(--ink);
+}
+
+#profile .social-link {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    color: var(--ink);
+    background: #fff;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+#profile .hero-photo {
+    grid-area: photo;
+    align-self: center;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+
+#profile .avatar {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border: 5px solid #fff;
+    border-radius: 28px;
+    box-shadow: 0 20px 45px rgb(31 70 101 / 14%);
+}
+
+/* Experience, Education, and forms */
+
+.experience-section h1,
+.experience-section h2,
+.experience-section article h3,
+#education #grid article h3 {
+    color: var(--ink);
+}
+
+.experience-section .experience-list article,
+#education #grid article,
+#education .empty-state {
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 24px rgb(21 35 51 / 6%);
+}
+
+.experience-section .experience-list article p,
+.experience-section .experience-list article li,
+#education .empty-state p {
+    color: var(--text-muted);
+}
+
+#education #error p,
+.account-section .form-error {
+    color: #b42318;
+}
+
+#education #search-input,
+.account-section .project-form input,
+.account-section .project-form select,
+.account-section .project-form textarea {
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--line);
+}
+
+#education #search-input::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+#education .project-add-button,
+#education #education-search-form button[type="submit"],
+.account-section button[type="submit"] {
+    color: #fff;
+    background: var(--ink);
+}
+
+#education .button-secondary,
+#education .button-star,
+.account-section .button-secondary {
+    color: var(--ink);
+    background: #fff;
+    border: 1px solid var(--line);
+}
+
+#education .button-star.is-starred {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+#education .star-count {
+    color: var(--ink);
+    background: #eaf1f7;
+}
+
+.account-section .container {
+    max-width: 36rem;
+    padding: clamp(1.2rem, 4vw, 2.5rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--ink);
+}
+
+.site-footer {
+    padding-block: 1.4rem;
+    border-top: 1px solid var(--line);
+    color: var(--text-muted);
+    background: #fff;
+}
+
+/* Tech Stack marquee */
+
+.tech-stack {
+    padding-bottom: clamp(3rem, 7vw, 5rem);
+}
+
+.tech-stack h2 {
+    margin-bottom: 0.65rem;
+    color: var(--ink);
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    letter-spacing: -0.04em;
+}
+
+.tech-marquee-control {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.tech-marquee {
+    margin-top: 0.8rem;
+    overflow: hidden;
+    mask-image: linear-gradient(
+        to right, transparent, black 1.25rem,
+        black calc(100% - 1.25rem), transparent
+    );
+}
+
+.tech-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: portfolio-tech-scroll 32s linear infinite;
+}
+
+.tech-marquee-group {
+    display: flex;
+    flex: none;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0.25rem 0.75rem 0.25rem 0;
+    list-style: none;
+}
+
+.tech-logo {
+    display: grid;
+    place-items: center;
+    width: 5.5rem;
+    height: 4.5rem;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: #fff;
+}
+
+.tech-logo i {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.tech-marquee:hover .tech-marquee-track,
+.tech-marquee-pause:checked ~ .tech-marquee .tech-marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes portfolio-tech-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+@media (max-width: 680px) {
+    .container {
+        width: calc(100% - 2rem);
+    }
+
+    #profile .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "identity"
+            "photo"
+            "details";
+    }
+
+    #profile .hero-photo {
+        width: min(100%, 22rem);
+    }
+}
+
+@media (max-width: 599px) {
+    .portfolio-header .nav-dock {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 24px;
+    }
+
+    .portfolio-header .nav-dock a {
+        flex-direction: column;
+        gap: 0.15rem;
+        padding-inline: 0.35rem;
+        font-size: clamp(0.6rem, 2.6vw, 0.72rem);
+    }
+
+    .nav-dock .nav-label {
+        animation: fade-portfolio-nav 360ms ease 420ms backwards;
+    }
+
+    .nav-dock .nav-user {
+        order: 1;
+        flex-basis: 100%;
+        max-width: none;
+        text-align: center;
+    }
+
+    .tech-logo {
+        width: 4.5rem;
+        height: 3.75rem;
+    }
+}
+
+@keyframes fade-portfolio-nav {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nav-dock .nav-label {
+        animation: none;
+    }
+
+    .tech-marquee-pause,
+    .tech-marquee-control,
+    .tech-marquee-group[aria-hidden="true"] {
+        display: none;
+    }
+
+    .tech-marquee {
+        overflow: visible;
+        mask-image: none;
+    }
+
+    .tech-marquee-track {
+        width: 100%;
+        animation: none;
+    }
+
+    .tech-marquee-group {
+        flex-wrap: wrap;
+        width: 100%;
+        padding-right: 0;
+    }
+}
+
+
+
+/* ==================================
+   CLOUD BACKGROUND - OPTIMIZED
+   ================================== */
+
+/* Langit menyatu dari navbar sampai bawah */
+body:has(#profile) {
+    isolation: isolate;
+    background: linear-gradient(
+        180deg,
+        #cfe9fb 0%,
+        #e8f5fd 58%,
+        #f9fcff 100%
+    ) !important;
+}
+
+/* Hero dan header transparan */
+body:has(#profile) #profile.hero {
+    background: transparent !important;
+    overflow: visible !important;
+}
+
+body:has(#profile) .site-header {
+    background: transparent !important;
+}
+
+/* Matikan awan versi sebelumnya */
+#profile.hero::before,
+#profile.hero::after {
+    content: none !important;
+    animation: none !important;
+}
+
+/* Lapisan awan berada di belakang seluruh konten */
+body:has(#profile)::before,
+body:has(#profile)::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+
+    background-size: 50% 100%;
+    background-repeat: repeat-x;
+
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+}
+
+/* Awan utama */
+body:has(#profile)::before {
+    background-image:
+        radial-gradient(
+            ellipse 140px 60px at 13% 27%,
+            rgba(255,255,255,.95) 30%,
+            transparent 82%
+        ),
+        radial-gradient(
+            ellipse 95px 65px at 19% 25%,
+            rgba(255,255,255,.95) 30%,
+            transparent 80%
+        ),
+        radial-gradient(
+            ellipse 180px 55px at 19% 30%,
+            rgba(255,255,255,.94) 30%,
+            transparent 80%
+        ),
+        radial-gradient(
+            ellipse 140px 50px at 73% 48%,
+            rgba(255,255,255,.9) 30%,
+            transparent 82%
+        ),
+        radial-gradient(
+            ellipse 90px 70px at 78% 44%,
+            rgba(255,255,255,.93) 30%,
+            transparent 82%
+        ),
+        radial-gradient(
+            ellipse 175px 48px at 79% 51%,
+            rgba(255,255,255,.9) 30%,
+            transparent 82%
+        );
+
+    animation: clouds-drift 32s linear infinite;
+}
+
+/* Awan jauh: lebih tipis dan lebih lambat */
+body:has(#profile)::after {
+    background-image:
+        radial-gradient(
+            ellipse 165px 65px at 44% 45%,
+            rgba(255,255,255,.58) 22%,
+            transparent 85%
+        ),
+        radial-gradient(
+            ellipse 90px 55px at 51% 42%,
+            rgba(255,255,255,.6) 30%,
+            transparent 80%
+        ),
+        radial-gradient(
+            ellipse 145px 55px at 91% 20%,
+            rgba(255,255,255,.65) 30%,
+            transparent 82%
+        );
+
+    opacity: 0.8;
+    animation: clouds-drift 55s linear infinite reverse;
+}
+
+/* Animasi memakai transform, bukan background-position */
+@keyframes clouds-drift {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+/* Kurangi beban GPU di HP */
+@media (max-width: 768px) {
+    body:has(#profile)::after {
+        display: none;
+    }
+}
+
+/* Hormati pengaturan reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    body:has(#profile)::before,
+    body:has(#profile)::after {
+        animation: none;
+        will-change: auto;
+    }
+}
+
+
+/* ==================================
+   PROFILE PHOTO POSITION
+   ================================== */
+
+#profile .hero-photo {
+    translate: -25px -45px;
+    transition: translate 0.35s ease;
+}
+
+/* ==================================
+   NAVBAR AUTO HIDE ON HOVER
+   ================================== */
+
+/* Area pemicu di bagian atas layar */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    height: 85px;
+    border: none !important;
+    background: transparent !important;
+}
+
+/* Navbar tersembunyi secara default */
+.site-header > .container {
+    opacity: 0;
+    transform: translateY(-18px);
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+/* Muncul saat cursor mendekati bagian atas */
+.site-header:hover > .container,
+.site-header:focus-within > .container {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Di HP navbar tetap tampil */
+@media (hover: none), (max-width: 768px) {
+    .site-header > .container {
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+    }
+
+    #profile .hero-photo {
+        translate: 0 0;
+    }
+}
+
+/* Animasi lebih ramah aksesibilitas */
+@media (prefers-reduced-motion: reduce) {
+    .site-header > .container,
+    #profile .hero-photo {
+        transition: none;
+    }
+}
+
+
+/* ==============================
+   NAVBAR HOVER REVEAL
+   ============================== */
+
+.site-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+
+    min-height: 85px;
+
+    /* Sembunyi, sisakan 12px untuk mendeteksi hover */
+    transform: translateY(calc(-100% + 12px)) !important;
+
+    transition: transform 0.35s ease !important;
+
+    background: transparent !important;
+    border: none !important;
+}
+
+/* Navbar muncul ketika kursor di bagian atas */
+.site-header:hover,
+.site-header:focus-within {
+    transform: translateY(0) !important;
+}
+
+/* Tidak mengganggu pengguna layar sentuh */
+@media (hover: none) {
+    .site-header {
+        position: relative !important;
+        transform: none !important;
+    }
+}
+
+/* Kurangi animasi jika diperlukan */
+@media (prefers-reduced-motion: reduce) {
+    .site-header {
+        transition: none !important;
+    }
+}
+
+
+/* FIX - RESTORE NAVBAR */
+
+.site-header {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 9999 !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+}
+
+.site-header > .container {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    pointer-events: auto !important;
+}
+
+/* Gantikan animasi navbar yang berjalan otomatis saat halaman dibuka. */
+.portfolio-header .nav-dock .nav-label {
+    animation: none;
+}
+
+@media (min-width: 600px) and (hover: hover) and (pointer: fine) {
+    .portfolio-header .nav-dock {
+        position: relative;
+        isolation: isolate;
+    }
+
+    /* Area hover tambahan tanpa mengubah ukuran kapsul. */
+    .portfolio-header .nav-dock::before {
+        content: "";
+        position: absolute;
+        inset: -12px;
+        z-index: -1;
+        pointer-events: auto;
+    }
+
+    .portfolio-header .nav-dock .nav-label {
+        max-width: 0;
+        padding-inline-start: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        opacity: 0;
+        transition:
+            max-width 280ms ease,
+            padding-inline-start 280ms ease,
+            opacity 180ms ease;
+    }
+
+    .portfolio-header .nav-dock:hover .nav-label,
+    .portfolio-header .nav-dock:has(a:focus-visible) .nav-label {
+        max-width: 8rem;
+        padding-inline-start: 0.35rem;
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .portfolio-header .nav-dock .nav-label {
+        transition: none;
+    }
+}
+
