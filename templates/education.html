@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{%load static%}
 {% block meta %}
     <title>Education - {{ name }}</title>
+    <link rel="stylesheet" href="{% static 'css/education_clean.css' %}">
 {% endblock meta %}
 {% block content %}
     <main>
@@ -58,9 +60,6 @@
     {% if user.is_superuser %}
         {% include "components/education_form_modal.html" %}
     {% endif %}
-
-    <!-- Komponen Toast -->
-    {% include 'components/toast.html' %}
 
     {% csrf_token %}
     <script>
@@ -248,7 +247,7 @@
         try {
             const fields = new FormData(educationForm);
             const payload = Object.fromEntries([
-                'institution', 'degree_level', 'major', 'description', 'ended_at'
+                'institution', 'degree_level', 'major', 'description','started_at', 'ended_at'
             ].map(name => [name, fields.get(name)]));
             payload.ended_at = payload.ended_at || null;
             await writeEducation(BASE_EDUCATION_ENDPOINT, 'POST', payload);

@@ -1,39 +1,92 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block content %}
-    <main>
-        <section class="hero" id="profile">
-            <div class="container hero-grid">
-                <div class="hero-identity">
-                    <p class="hero-kicker">Computer Science &middot; Universitas Indonesia</p>
-                    <h1>{{name}}</h1>
+
+<main>
+    <section class="hero" id="profile">
+        
+        <div class="container hero-grid">
+            <div class="hero-identity">
+                <p class="hero-kicker">Computer Science · Universitas Indonesia</p>
+                <h1>{{ name }}</h1>
+            </div>
+
+            <figure class="hero-photo">
+                <img class="avatar"
+                     src="{% static 'img/foto ui.jpeg' %}"
+                     alt="Photo of {{ name }}">
+            </figure>
+
+            <div class="hero-details">
+                <p class="bio">{{ bio }}</p>
+
+                <div class="hero-actions">
+                    <a class="button button-primary" href="{% url 'main:show_experience' %}">
+                        View experience <span aria-hidden="true">↗</span>
+                    </a>
+                    <a class="button button-secondary" href="{% url 'main:show_education' %}">
+                        Education
+                    </a>
                 </div>
-                <div class="hero-photo">
-                    <div class="photo-block"></div>
-                    <img class="avatar" src="/static/img/foto ui.jpeg" alt="Photo of {{name}}">
-                </div>
-                <div class="hero-details">
-                    <p class="bio"> {{bio}}</p>
-                    <dl class="meta-list">
-                        <div class="meta-row">
-                            <dt>NPM</dt>
-                            <dd>{{npm}}</dd>
-                        </div>
-                        <div class="meta-row">
-                            <dt>Program</dt>
-                            <dd>{{study_program}}</dd>
-                        </div>
-                        <div class="meta-row">
-                            <dt>Sesi Terakhir Login</dt>
-                            <dd>{{ last_login }}</dd>
-                        </div>
-                    </dl>
-                    <div class="social-links">
-                        <a href="https://github.com/aufagit" class="social-link"> <i class="fa-brands fa-github"> </i></a>
-                        <a href="https://www.linkedin.com/in/aufa-nurcahyo-0449b5379/" class="social-link"> <i class="fa-brands fa-linkedin"> </i></a>
-                        <a href="mailto:nurcahyoaufa@gmail.com" class="social-link"> <i class="fa-solid fa-envelope"> </i> </a>
+
+                <dl class="meta-list">
+                    <div class="meta-row">
+                        <dt>NPM</dt>
+                        <dd>{{ npm }}</dd>
                     </div>
+                    <div class="meta-row">
+                        <dt>Program</dt>
+                        <dd>{{ study_program }}</dd>
+                    </div>
+                    <div class="meta-row">
+                        <dt>Sesi Terakhir Login</dt>
+                        <dd>{{ last_login }}</dd>
+                    </div>
+                </dl>
+
+                <div class="social-links">
+                    <a class="social-link" href="https://github.com/aufagit" aria-label="GitHub">
+                        <i class="fa-brands fa-github" aria-hidden="true"></i>
+                    </a>
+                    <a class="social-link"
+                       href="https://www.linkedin.com/in/aufa-nurcahyo-0449b5379/"
+                       aria-label="LinkedIn">
+                        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                    </a>
+                    <a class="social-link" href="mailto:nurcahyoaufa@gmail.com" aria-label="Email">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <section class="tech-stack" id="tech-stack" aria-labelledby="tech-stack-title">
+        <div class="container">
+            <h2 id="tech-stack-title">Tech Stack</h2>
+
+            <div class="tech-marquee">
+                <div class="tech-marquee-track">
+                    {% for copy in "12" %}
+                        <ul class="tech-marquee-group" role="list"
+                            {% if not forloop.first %}aria-hidden="true"{% endif %}>
+                            <li class="tech-logo" title="Django"><i class="devicon-django-plain colored" role="img" aria-label="Django"></i></li>
+                            <li class="tech-logo" title="Java"><i class="devicon-java-plain colored" role="img" aria-label="Java"></i></li>
+                            <li class="tech-logo" title="CSS"><i class="devicon-css3-plain colored" role="img" aria-label="CSS"></i></li>
+                            <li class="tech-logo" title="Python"><i class="devicon-python-plain colored" role="img" aria-label="Python"></i></li>
+                            <li class="tech-logo" title="HTML"><i class="devicon-html5-plain colored" role="img" aria-label="HTML"></i></li>
+                            <li class="tech-logo" title="TypeScript"><i class="devicon-typescript-plain colored" role="img" aria-label="TypeScript"></i></li>
+                            <li class="tech-logo" title="React.js"><i class="devicon-react-original colored" role="img" aria-label="React.js"></i></li>
+                            <li class="tech-logo" title="Flutter"><i class="devicon-flutter-plain colored" role="img" aria-label="Flutter"></i></li>
+                            <li class="tech-logo" title="Dart"><i class="devicon-dart-plain colored" role="img" aria-label="Dart"></i></li>
+                            <li class="tech-logo" title="JavaScript"><i class="devicon-javascript-plain colored" role="img" aria-label="JavaScript"></i></li>
+                            <li class="tech-logo" title="Go"><i class="devicon-go-original-wordmark colored" role="img" aria-label="Go"></i></li>
+                        </ul>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 {% endblock content %}

@@ -1,0 +1,387 @@
+/* EDUCATION — Editorial / Interactive V3
+   Replace the old education_clean.css with this file (do not stack both).
+   All selectors are scoped to #education. No Django, DRF, or JS changes.
+*/
+
+#education {
+  --edu-ink: #13283c;
+  --edu-muted: #60778d;
+  --edu-line: #d9e8f2;
+  --edu-blue: #267da9;
+  --edu-white: #fff;
+  position: relative;
+  isolation: isolate;
+  min-height: calc(100vh - 80px);
+  padding: clamp(75px, 8vw, 118px) 0 clamp(65px, 8vw, 110px);
+  border: 0;
+  color: var(--edu-ink);
+  background:
+    radial-gradient(ellipse 580px 410px at 7% 0%, rgba(162, 208, 239, .25), transparent 80%),
+    linear-gradient(180deg, #e8f5ff 0%, #f3f9fe 50%, #fff 100%);
+}
+#education *, #education *::before, #education *::after { box-sizing: border-box; }
+#education > .container { width: min(1160px, calc(100% - 48px)); max-width: 1160px; margin-inline: auto; }
+
+/* Editorial heading */
+#education .section-kicker {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: fit-content;
+  margin: 0 0 14px;
+  font: 750 11px/1.3 "Space Grotesk", system-ui, sans-serif;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  color: #3c7fa4;
+}
+#education .section-kicker::before {
+  content: "";
+  flex: 0 0 25px;
+  height: 2px;
+  border-radius: 99px;
+  background: #71b7d8;
+}
+#education .project-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 22px;
+  margin: 0 0 32px;
+}
+#education .project-header h1 {
+  margin: 0;
+  color: var(--edu-ink);
+  font: 750 clamp(44px, 5.7vw, 72px)/1 "Space Grotesk", system-ui, sans-serif;
+  letter-spacing: -.06em;
+}
+#education .project-add-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 47px;
+  padding: 12px 20px;
+  margin-bottom: 3px;
+  background: #152b40;
+  border: 1px solid #152b40;
+  border-radius: 999px;
+  color: #fff;
+  box-shadow: 0 9px 22px rgba(17, 49, 76, .12);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  transition: transform .22s ease, background-color .22s ease, box-shadow .22s ease;
+}
+#education .project-add-button:hover {
+  transform: translateY(-2px);
+  background: #294962;
+  box-shadow: 0 13px 24px rgba(17,49,76,.16);
+}
+#education .project-add-button > span {
+  display: inline-grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  color: #152b40;
+  background: #cce9f8;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Finder */
+#education .project-search {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  width: min(100%, 720px);
+  margin: 0 0 45px;
+}
+#education .project-search__input {
+  display: block;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 52px;
+  padding: 0 19px 0 48px;
+  border: 1px solid #d2e3ee;
+  border-radius: 14px;
+  background-color: rgba(255,255,255,.94);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%235e829b' stroke-width='1.9' stroke-linecap='round' viewBox='0 0 24 24'%3E%3Ccircle cx='10.5' cy='10.5' r='6.5'/%3E%3Cpath d='m16 16 4.5 4.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 19px;
+  background-position: 17px center;
+  box-shadow: 0 7px 23px rgba(33,79,113,.04);
+  color: var(--edu-ink);
+  font-size: 14px;
+  line-height: 1.4;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+#education .project-search__input::placeholder { color: #8193a5; opacity: 1; }
+#education .project-search__input:focus {
+  outline: none;
+  border-color: #76b3d6;
+  box-shadow: 0 0 0 4px rgba(58,144,192,.1);
+}
+#education .project-search > button {
+  min-width: 91px;
+  min-height: 52px;
+  margin: 0;
+  border-radius: 14px;
+  border: 1px solid #152b40;
+  background: #152b40;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 750;
+  box-shadow: none;
+  transition: background-color .2s ease;
+}
+#education .project-search > button:hover { background: #2b4a64; }
+
+/* Numbered entries; intentionally NO line connecting the cards. */
+#education .experience-list {
+  counter-reset: education-entries;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 19px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+#education .experience-list::after { display: none !important; content: none !important; }
+#education .experience-list article,
+#education .experience-list article:nth-child(odd),
+#education .experience-list article:nth-child(even) {
+  counter-increment: education-entries;
+  display: block;
+  position: relative;
+  inset: auto;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 29px 34px 26px 119px;
+  overflow: hidden;
+  text-align: left;
+  border: 1px solid #d8e7f1;
+  border-radius: 22px;
+  background: linear-gradient(90deg, rgba(230,244,252,.67) 0 91px, rgba(255,255,255,.97) 91px);
+  box-shadow: 0 8px 26px rgba(32,75,109,.045), 0 20px 60px rgba(32,75,109,.025);
+  color: var(--edu-ink);
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+#education .experience-list article:hover,
+#education .experience-list article:focus-within {
+  transform: translateY(-3px);
+  border-color: #a7cfdf;
+  box-shadow: 0 16px 30px rgba(32,75,109,.075), 0 28px 65px rgba(32,75,109,.04);
+}
+/* Number block, replacing the old emoji icon. */
+#education .experience-list article::before,
+#education .experience-list article:nth-child(odd)::before,
+#education .experience-list article:nth-child(even)::before {
+  content: counter(education-entries, decimal-leading-zero);
+  position: absolute;
+  top: 30px;
+  left: 22px;
+  right: auto;
+  display: grid;
+  place-items: center;
+  width: 49px;
+  height: 49px;
+  border-radius: 13px;
+  border: 1px solid rgba(86,153,190,.21);
+  background: rgba(255,255,255,.94);
+  background-image: none;
+  box-shadow: 0 5px 13px rgba(40,95,132,.045);
+  font: 700 19px/1 "Space Grotesk", system-ui, sans-serif;
+  color: #377ca3;
+  z-index: 1;
+}
+#education .experience-list article::after,
+#education .experience-list article:nth-child(odd)::after,
+#education .experience-list article:nth-child(even)::after {
+  content: "";
+  position: absolute;
+  top: 93px;
+  left: 45px;
+  right: auto;
+  bottom: 27px;
+  width: 1px;
+  height: auto;
+  border: none;
+  border-radius: 0;
+  background: linear-gradient(180deg, rgba(98,167,204,.5), rgba(98,167,204,0));
+  pointer-events: none;
+}
+#education .experience-list article h3 {
+  margin: 0 0 11px;
+  color: #13273b;
+  font: 750 clamp(21px, 2.45vw, 30px)/1.2 "Space Grotesk", system-ui, sans-serif;
+  letter-spacing: -.04em;
+  overflow-wrap: anywhere;
+}
+#education .experience-org {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px 12px;
+  margin: 0;
+  color: #4d657b;
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 550;
+}
+#education .experience-org span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 5px 10px;
+  border: 1px solid #e3eaf0;
+  border-radius: 999px;
+  background: #f6f9fb;
+  color: #607488;
+  font: 650 11px/1.1 system-ui, sans-serif;
+  white-space: nowrap;
+}
+#education .experience-org span::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #8baaba;
+}
+
+/* Detail: visible on keyboard focus and on touch, opens on hover for desktop. */
+#education .experience-list article ul,
+#education .experience-list article:hover ul {
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0;
+  max-height: none;
+  visibility: visible;
+  opacity: 1;
+  overflow: visible;
+  transform: none;
+}
+#education .experience-list article li {
+  display: block;
+  margin: 0;
+  color: #6b7f93;
+  line-height: 1.7;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+@media (hover: hover) and (pointer: fine) {
+  #education .experience-list article ul {
+    display: grid;
+    grid-template-rows: 0fr;
+    max-height: 0;
+    margin-top: 0;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    transition: grid-template-rows .35s ease, max-height .35s ease, margin-top .35s ease, opacity .25s ease, visibility .25s;
+  }
+  #education .experience-list article li { min-height: 0; overflow: hidden; }
+  #education .experience-list article:hover ul,
+  #education .experience-list article:focus-within ul {
+    grid-template-rows: 1fr;
+    max-height: 800px;
+    margin-top: 18px;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Action area: buttons remain exposed and functional while description collapses. */
+#education .project-card-actions,
+#education .experience-list article:nth-child(odd) .project-card-actions,
+#education .experience-list article:nth-child(even) .project-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 23px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid #e7eef3;
+}
+#education .project-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; margin: 0; }
+#education .button-star, #education .project-actions .button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 8px 14px;
+  margin: 0;
+  border: 1px solid #dae5ed;
+  border-radius: 10px;
+  box-shadow: none;
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+#education .button-star { background: #f7fafc !important; border-color: #e0e9f0 !important; color: #5d7284 !important; }
+#education .button-star:hover { background: #edf5fa !important; color: #1c5676 !important; }
+#education .button-star.is-starred { background: #e9f4fa !important; color: #246e95 !important; border-color: #bcd7e8 !important; }
+#education .star-count { background: #e6eff5; color: #4e6478; border-radius: 999px; padding: 3px 7px; }
+#education .project-actions .button-secondary { background: #f6f9fc; color: #344f68; border-color: #dbe7ef; }
+#education .project-actions .button-secondary:hover { background: #eaf3f9; }
+#education .project-actions .button-danger { background: #fff; color: #647489; border-color: #e4e9ee; }
+#education .project-actions .button-danger:hover { background: #fff0ef; color: #bd453e; border-color: #f3c9c5; }
+#education .empty-state { color: var(--edu-muted); }
+#education button:focus-visible, #education a:focus-visible { outline: 3px solid rgba(34,127,172,.3); outline-offset: 3px; }
+
+/* Mobile: legible, no hidden description and no horizontal overflow. */
+@media (max-width: 720px) {
+  #education { padding: 105px 0 62px; }
+  #education > .container { width: min(100% - 32px, 1160px); }
+  #education .project-header { align-items: flex-start; gap: 18px; margin-bottom: 24px; }
+  #education .project-header h1 { font-size: clamp(42px, 11vw, 58px); }
+  #education .project-add-button { min-height: 43px; }
+  #education .project-search { width: 100%; gap: 8px; margin-bottom: 30px; }
+  #education .project-search__input { height: 48px; padding-left: 40px; background-position: 13px center; }
+  #education .project-search > button { min-width: 70px; min-height: 48px; padding: 10px; }
+  #education .experience-list { gap: 13px; padding: 0; }
+  #education .experience-list article,
+  #education .experience-list article:nth-child(odd),
+  #education .experience-list article:nth-child(even) {
+    padding: 22px 19px 21px 72px;
+    border-radius: 17px;
+    background: linear-gradient(90deg,rgba(228,242,251,.65) 0 56px,rgba(255,255,255,.97) 56px);
+  }
+  #education .experience-list article::before,
+  #education .experience-list article:nth-child(odd)::before,
+  #education .experience-list article:nth-child(even)::before {
+    left: 11px; top: 23px; width: 34px; height: 36px; border-radius: 10px; font-size: 12px;
+  }
+  #education .experience-list article::after,
+  #education .experience-list article:nth-child(odd)::after,
+  #education .experience-list article:nth-child(even)::after { left: 27px; top: 72px; bottom: 22px; }
+  #education .experience-list article h3 { font-size: clamp(19px, 5vw, 24px); }
+  #education .experience-org { font-size: 12px; }
+  #education .experience-list article li { font-size: 13px; }
+  #education .project-card-actions { align-items: stretch; }
+}
+@media (max-width: 450px) {
+  #education .project-header { flex-direction: column; align-items: flex-start; }
+  #education .project-add-button { width: 100%; }
+  #education .experience-list article,
+  #education .experience-list article:nth-child(odd),
+  #education .experience-list article:nth-child(even) { padding-right: 13px; padding-left: 66px; }
+  #education .project-card-actions { flex-direction: column; align-items: stretch; }
+  #education .project-actions { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #education .experience-list article, #education .project-add-button,
+  #education .experience-list article ul { transition: none !important; }
+}
