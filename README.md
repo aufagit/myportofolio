@@ -1,8 +1,87 @@
 Nama : Aufa Nurcahyo
-
+Kelas : PBP D
 NPM : 2506656500
 
-Kelas : PBP D
+
+## Deskripsi Proyek
+
+MyPortfolio merupakan website portofolio pribadi yang dikembangkan menggunakan Django sebagai bagian dari mata kuliah Pemrograman Berbasis Platform (PBP) Universitas Indonesia.
+
+Website ini menampilkan profil pribadi, pengalaman organisasi dan kepanitiaan (Experience), serta riwayat pendidikan (Education). Pengguna dapat melakukan registrasi, login, memberikan star, dan mengakses fitur pengelolaan data sesuai hak akses masing-masing.
+
+Pada **Individual Assignment 6**, fitur Education dikembangkan menggunakan Django REST Framework (DRF). Implementasinya mencakup serializer untuk validasi data, REST API untuk operasi CRUD, permission berdasarkan peran pengguna, serta integrasi Fetch API untuk melakukan pencarian dan pengelolaan data tanpa me-reload seluruh halaman.
+
+Website juga menggunakan desain responsif dengan dukungan light mode, dark mode, serta animasi CSS.
+
+## Teknologi yang Digunakan
+
+- **Backend:** Python, Django, Django REST Framework
+- **Frontend:** HTML, CSS, JavaScript
+- **Database:** SQLite (pengembangan lokal)
+- **API:** REST API, Fetch API (AJAX)
+- **Authentication:** Django SessionAuthentication
+- **Testing:** Django TestCase dan DRF APITestCase
+
+## Cara Menjalankan Proyek
+
+**1. Buka direktori proyek**
+
+Buka terminal pada folder yang berisi `manage.py`.
+
+**2. Buat dan aktifkan virtual environment**
+
+```powershell
+python -m venv env
+.\env\Scripts\Activate.ps1
+```
+
+**3. Instal dependencies**
+
+```powershell
+pip install -r requirements.txt
+```
+
+**4. Jalankan migrasi database**
+
+```powershell
+python manage.py migrate
+```
+
+**5. Buat akun superuser (opsional)**
+
+```powershell
+python manage.py createsuperuser
+```
+
+**6. Jalankan server Django**
+
+```powershell
+python manage.py runserver
+```
+
+Website dapat diakses melalui `http://127.0.0.1:8000/`.
+
+**7. Jalankan pengujian**
+
+```powershell
+python manage.py test main
+```
+
+## Endpoint Utama
+
+- `/` — Halaman profil
+- `/experience/` — Halaman pengalaman
+- `/education/` — Halaman pendidikan
+- `/admin/` — Django Admin
+- `/api/v1/education/` — REST API Education
+- `/api/v1/education/<uuid>/` — Detail, update, dan delete Education
+- `/api/v1/education/<uuid>/star/` — Memberikan atau membatalkan star
+
+## Perkembangan Proyek
+
+Proyek dikembangkan secara bertahap melalui rangkaian tutorial dan tugas PBP. Pengembangan awal berfokus pada struktur HTML, styling CSS, Django MVT, model database, form, serta autentikasi.
+
+Pengembangan berikutnya menambahkan interaktivitas menggunakan AJAX dan Fetch API. Pada Tugas 6, fitur Education diintegrasikan dengan Django REST Framework, lengkap dengan validasi serializer, permission, CSRF, dan pengujian API.
 
 Tugas 1
 1. Ya saya menerapkan elemen semantik HTML 5, khususnya penggunaan section dan article, section membantu membagi halaman menjadi lebih mudah dipahami seperti id="experience", sehingga langsung dapat masuk ke interface. Penggunaan article sendiri agar setiap daftar experience adalah informasi yang independen dan bisa terpisah dari halaman utamanya. Tetapi saya tidak menggunakan aside karena desain saya belum menggunakan sidebar dan semacamnya
@@ -136,3 +215,15 @@ Tugas 6
 - Autentikasi merupakan proses mengenali identitas pengguna, sedangkan otorisasi menentukan tindakan yang boleh dilakukan pengguna tersebut. Pada proyek saya, SessionAuthentication digunakan untuk mengenali pengguna yang login, sedangkan IsPortfolioOwnerOrEditorOrReadOnly mengatur akses berdasarkan peran, seperti pengunjung, pengguna biasa, Editor, dan Superuser. Permission harus diperiksa di server karena menyembunyikan tombol pada template tidak mencegah pengguna mengakses endpoint API secara langsung. Dengan permission class, request tanpa izin dapat ditolak menggunakan HTTP 403.
 
 - API yang menggunakan SessionAuthentication tetap memerlukan token CSRF untuk request seperti POST, PUT, PATCH, dan DELETE karena browser dapat mengirim cookie session secara otomatis sehingga berpotensi disalahgunakan melalui serangan CSRF. Pada proyek saya, token dikirim melalui header X-CSRFToken pada Fetch API. Pengujian force_authenticate() tidak cukup untuk membuktikan perlindungan CSRF karena melewati proses autentikasi session yang sebenarnya. Oleh karena itu, saya menggunakan APIClient(enforce_csrf_checks=True) dan client.login() untuk memastikan request tanpa token ditolak dengan HTTP 403, sedangkan request dengan token valid dapat diproses.
+
+AI Disclosure – Tugas 6
+
+Pada Tugas 6, saya menggunakan ChatGPT (OpenAI) sebagai asisten implementasi dan debugging Django REST Framework.
+
+Strategi Prompting: Mengirimkan modul, potongan kode, dan hasil pengujian untuk mengevaluasi implementasi API.
+
+Bagian yang Dibantu: Integrasi PATCH pada education_form.html, CSRF token, error handling, serta pemeriksaan serializer dan permission.
+
+Keterbatasan AI: AI tidak selalu mengetahui kondisi terbaru proyek sehingga beberapa saran perlu disesuaikan.
+
+Perbaikan Manual: Menyesuaikan kode dengan struktur Education, memeriksa hasil API, serta menjalankan pengujian Django secara mandiri
