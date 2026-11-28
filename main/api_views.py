@@ -8,9 +8,9 @@ from rest_framework.decorators import (
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from main.models import Education
+from main.models import Education, Experience
 from main.permissions import IsPortfolioOwnerOrEditorOrReadOnly
-from main.serializers import EducationSerializer
+from main.serializers import EducationSerializer, ExperienceSerializer
 
 
 @api_view(["GET", "HEAD", "POST"])
@@ -113,3 +113,25 @@ def api_logout(request):
         request.auth.delete()
 
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(["GET", "HEAD", "POST"])
+@permission_classes([IsPortfolioOwnerOrEditorOrReadOnly])
+def experience_list(request):
+    if request.method in ("GET", "HEAD"):
+        experiences = Experience.objects.order_by("-started_at")
+
+        serializer = ExperienceSerializer(
+            experiences,
+            many=True,
+        )
+
+        return Response(serializer.data)
+
+    serializer = ExperienceSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    serializer.save()
+
+    return Response(
+        serializer.data,
+        status=status.HTTP_201_CREATED,
+    )
