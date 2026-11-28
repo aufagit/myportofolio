@@ -2,7 +2,7 @@
 from django.utils.html import strip_tags
 from rest_framework import serializers
 
-from main.models import Education
+from main.models import Education, Experience
 
 
 class EducationSerializer(serializers.ModelSerializer):
@@ -68,3 +68,53 @@ class EducationSerializer(serializers.ModelSerializer):
         return ", ".join(
             user.username for user in obj.starred_by.all()
         )
+
+class ExperienceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Experience
+        fields = [
+            "id",
+            "title",
+            "organization",
+            "description",
+            "category",
+            "thumbnail",
+            "started_at",
+            "ended_at",
+        ]
+        read_only_fields = ["id"]
+
+    def validate_title(self, value):
+        value = strip_tags(value).strip()
+        if not value:
+            raise serializers.ValidationError(
+                "Judul pengalaman tidak boleh kosong."
+            )
+        return value
+
+    def validate_organization(self, value):
+        value = strip_tags(value).strip()
+        if not value:
+            raise serializers.ValidationError(
+                "Nama organisasi tidak boleh kosong."
+            )
+        return value
+
+    def validate_description(self, value):
+        value = strip_tags(value).strip()
+        if not value:
+            raise serializers.ValidationError(
+                "Deskripsi tidak boleh kosong."
+            )
+        return value
+
+    def validate(self, data):
+        started_at = data.get("started_at")
+        ended_at = data.get("ended_at")
+
+        if started_at and ended_at and ended_at < started_at:
+            raise serializers.ValidationError(
+                "Tanggal selesai tidak boleh sebelum tanggal mulai."
+            )
+
+        return data
